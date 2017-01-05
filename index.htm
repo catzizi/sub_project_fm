@@ -106,12 +106,10 @@
                 return false;
             })
 
-
-            var limit = $('.title').attr('maxlength');
-
-            $('.title').bind('keyup keydown', function() {
-                var count = $('.title').val().length;
-                $('#letterCont').html(limit - count);
+            $('.letterCount').bind('keyup keydown', function() {
+                var limit = $(this).find('.count_title').attr('maxlength');
+                var count = $(this).find('.count_title').val().length;
+                $(this).find('.count').html(limit - count);
             });
 
             [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
@@ -329,11 +327,10 @@
             <h3 class="fs-subtitle">Key words to catch people's attention, see the examples here to get some inspiration</h3>
 
 
-            <div style="margin: 20px 0 0 20px;">
-                <input type="text" name="email" class="title" maxlength="100" />
+            <div style="margin: 20px 0 0 20px;" class="letterCount">
+                <input type="text" name="email" class="count_title" maxlength="100" />
                 <div>
-                    <span id="letterCont" class="badge">100</span> <span class="charater">Characters Left</span>
-
+                    <span class="badge count">100</span> <span class="charater">Characters Left</span>
                 </div>
             </div>
 
@@ -341,10 +338,11 @@
             <h2 class="fs-title" style="margin-top:50px;">ABOUT YOUR OFFERING</h2>
             <h3 class="fs-subtitle">Try to give reasons why people should book your offering. Include your skills, experiences and details will help!</h3>
 
-            <textarea class="about"maxlength=800></textarea>
-            <div>
-                <span id="letterCont" class="badge">800</span> <span class="charater">Characters Left</span>
-
+            <div class="letterCount">
+                <textarea class="count_title" maxlength=800></textarea>
+                <div>
+                    <span class="badge count">800</span> <span class="charater">Characters Left</span>
+                </div>
             </div>
 
             <h2 class="fs-title" style="margin-top:20px;">OFFERNIG CATEGORY</h2>
