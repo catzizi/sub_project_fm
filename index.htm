@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/cs-select.css" />
 		<link rel="stylesheet" type="text/css" href="css/cs-skin-underline.css" />
+		<link rel="stylesheet" type="text/css" href="css/image-picker.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		
 <style>
@@ -240,10 +241,21 @@ $(function() {
 		<span id="letterCont" class="badge">800</span> <span class="charater">Characters Left</span>
 
 	</div> 
-<h2 class="fs-title" style="margin-top:50px;">OFFERNIG CATEGORY</h2>
+<script src="js/image-picker.min.js"></script>	
+<script>
+$("select.image-picker").imagepicker({limit: 2})
+</script>
+<h2 class="fs-title" style="margin-top:20px;">OFFERNIG CATEGORY</h2>
 <h3 class="fs-subtitle">You can choose multiple category to best describe your offering.</h3>
+<select multiple="multiple" class="image-picker "show-html>
+  <option data-img-src="com.jpg" value="1">Companionship</option>
+  <option data-img-src="image/fun.jpg" value="2">Fun Experience</option>
+  <option data-img-src="image/guide.jpg" value="3">New Town Guidiance</option>
+  <option data-img-src="image/service.jpg" value="4">Services</option>
+  <option data-img-src="image/skill.jpg" value="5">Skill Trade</option>
+</select>
 
-<input type="button" name="next" class="next action-button" value="Next" />
+<input type="button" name="next" class="next action-button" value="Next" style="margin-top:10px;"/>
 
 </fieldset>
 <fieldset>
