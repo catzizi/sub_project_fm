@@ -16,7 +16,6 @@
     <script src="js/classie.js"></script>
     <script src="js/selectFx.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-   
     <script src="js/jquery.geocomplete.js"></script>
 
     
@@ -141,28 +140,30 @@
 
         });
 $(function(){
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          details: "form ",
+          markerOptions: {
+            draggable: true
+          }
+        });
         
-        $("#geocomplete").geocomplete()
-          .bind("geocode:result", function(event, result){
-            $.log("Result: " + result.formatted_address);
-          })
-          .bind("geocode:error", function(event, status){
-            $.log("ERROR: " + status);
-          })
-          .bind("geocode:multiple", function(event, results){
-            $.log("Multiple: " + results.length + " results found");
-          });
-        
-        $("#find").click(function(){
-          $("#geocomplete").trigger("geocode");
+        $("#geocomplete").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+          $("#reset").show();
         });
         
         
-        $("#examples a").click(function(){
-          $("#geocomplete").val($(this).text()).trigger("geocode");
+        $("#reset").click(function(){
+          $("#geocomplete").geocomplete("resetMarker");
+          $("#reset").hide();
           return false;
         });
         
+        $("#find").click(function(){
+          $("#geocomplete").trigger("geocode");
+        }).click();
       });
     </script>
 
@@ -481,7 +482,11 @@ Include name of the location if it’s a defining part of the offering. Example:
                     </p>
                 </div>
             </div>
-             <input id="geocomplete" type="text" placeholder="Type in an address" size="150" />
+
+             <div class="map_canvas"></div>
+             <input id="geocomplete" type="text" placeholder="Type in an address" value="" />
+             <a id="reset" href="#" style="display:none;">Reset Marker</a>
+            
             
             <h2></h2>
             <h2 class="fs-title" style="margin-top:50px;">How far are you willing to travel?</h2>
