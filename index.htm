@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/cs-select.css" />
     <link rel="stylesheet" type="text/css" href="css/cs-skin-underline.css" />
     <link rel="stylesheet" type="text/css" href="css/image-picker.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/image-picker.min.js"></script>
@@ -117,16 +118,25 @@
             } );
 
             $(".image-picker").imagepicker({
-          hide_select : true,
-          show_label  : true
-        });
+              hide_select : true,
+              show_label  : true
+            });
+
+            var moveLeft = 150;
+            var moveDown = 300;
+
+            $('a.trigger').hover(function(e) {
+                $(this).next('div.pop-up').show();
+            }, function() {
+                $(this).next('div.pop-up').hide();
+            });
+
+            $('a.trigger').mousemove(function(e) {
+                $(this).next('div.pop-up').css('top', e.pageY - moveDown).css('left', e.pageX - moveLeft);
+            });
 
         });
-
     </script>
-
-
-
 
 
     <style>
@@ -287,6 +297,21 @@
         ul.thumbnails.image_picker_selector  {
         	padding-left: 250px;
         }
+
+        .hover-over-container {
+            margin: 0 auto 10px auto;
+        }
+
+        .pop-up {
+            display: none;
+            position: absolute;
+            width: 280px;
+            padding: 10px;
+            background: #eeeeee;
+            color: #000000;
+            border: 1px solid #1a1a1a;
+            font-size: 90%;
+        }
        
     </style>
     <title>jQuery Multi-Step Form Example</title>
@@ -326,6 +351,17 @@
             <h2 class="fs-title">OFFERING TITLE</h2>
             <h3 class="fs-subtitle">Key words to catch people's attention, see the examples here to get some inspiration</h3>
 
+            <div class="hover-over-container">
+                <a href="#" class="trigger">Hover Me!</a>
+
+                <div class="pop-up">
+                    <h3>Pop-up #1 Successfully Displayed</h3>
+                    <p>
+                        This div only appears when the trigger link is hovered over.
+                        Otherwise it is hidden from view.
+                    </p>
+                </div>
+            </div>
 
             <div style="margin: 20px 0 0 20px;" class="letterCount">
                 <input type="text" name="email" class="count_title" maxlength="100" />
@@ -337,6 +373,19 @@
 
             <h2 class="fs-title" style="margin-top:50px;">ABOUT YOUR OFFERING</h2>
             <h3 class="fs-subtitle">Try to give reasons why people should book your offering. Include your skills, experiences and details will help!</h3>
+
+            <div class="hover-over-container">
+                <a href="#" class="trigger">Hover Me!</a>
+
+                <div class="pop-up">
+                    <h3>Pop-up #2 Successfully Displayed</h3>
+                    <p>
+                        This div only appears when the trigger link is hovered over.
+                        Otherwise it is hidden from view.
+                    </p>
+                </div>
+            </div>
+
 
             <div class="letterCount">
                 <textarea class="count_title" maxlength=800></textarea>
